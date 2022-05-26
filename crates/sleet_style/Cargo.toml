@@ -1,0 +1,9 @@
+[package]
+name = "sleet_style"
+version = "0.0.1"
+authors = ["Sachin Cherian <sachinctl@protonmail.com>"]
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+sleet_style_impl = { path = "impl" }
