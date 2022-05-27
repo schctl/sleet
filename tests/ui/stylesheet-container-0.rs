@@ -2,7 +2,7 @@ use sleet::stylesheet;
 use iced_core::{Color, Background};
 
 stylesheet! {
-    pub container SomeContainer0 {
+    pure container SomeContainer0 {
         style: {
             text_color: Some(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }),
             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
@@ -14,7 +14,7 @@ stylesheet! {
 }
 
 stylesheet! {
-    pub native container SomeContainer1 {
+    native container SomeContainer1 {
         style: {
             text_color: Some(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }),
             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
@@ -26,7 +26,7 @@ stylesheet! {
 }
 
 stylesheet! {
-    pub pure container SomeContainer2 {
+    pub container SomeContainer2 {
         style: {
             text_color: Some(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }),
             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),

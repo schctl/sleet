@@ -16,6 +16,8 @@ pub trait IntoColor {
     fn into_color(self) -> Color;
 }
 
+// TODO: Maybe this can be merged with iced?
+
 #[cfg(feature = "palette")]
 impl<S, C> IntoColor for Rgb<S, C>
 where
