@@ -1,6 +1,5 @@
 [workspace]
 members = [
     "crates/sleet_style",
-    "crates/sleet_style/impl",
     "crates/sleet_helpers",
 ]

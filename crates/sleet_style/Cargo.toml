@@ -6,4 +6,9 @@ edition = "2021"
 license = "MIT"
 
 [dependencies]
-sleet_style_impl = { path = "impl" }
+iced_core = "0.5"
+iced_pure = "0.2"
+iced_style = "0.4"
+
+[dev-dependencies]
+trybuild = "1.0"
