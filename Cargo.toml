@@ -11,5 +11,8 @@ iced_pure = "0.2"
 iced_style = "0.4"
 palette = { version = "0.6", optional = true }
 
+[features]
+colors-extra = []
+
 [dev-dependencies]
-trybuild = "1.0"
+trybuild = "1"
