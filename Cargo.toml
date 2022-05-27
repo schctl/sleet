@@ -1,5 +1,15 @@
-[workspace]
-members = [
-    "crates/sleet_style",
-    "crates/sleet_helpers",
-]
+[package]
+name = "sleet"
+version = "0.0.1"
+authors = ["Sachin Cherian <sachinctl@protonmail.com>"]
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+iced_core = "0.5"
+iced_pure = "0.2"
+iced_style = "0.4"
+palette = { version = "0.6", optional = true }
+
+[dev-dependencies]
+trybuild = "1.0"

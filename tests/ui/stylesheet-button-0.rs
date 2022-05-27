@@ -1,4 +1,4 @@
-use sleet_style::stylesheet;
+use sleet::stylesheet;
 use iced_core::{Color, Background, Vector};
 
 stylesheet! {
