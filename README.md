@@ -13,14 +13,14 @@ sleet = { git = "https://github.com/schctl/sleet" }
 
 - `sleet` provides some pre-built colorschemes that can be activated using the `colors-extra` feature.
 
-- `sleet` provides the `stylesheet!` macro to define widget stylesheets more concisely. An example is
+- `sleet` provides the `stylesheets!` macro to define widget stylesheets more concisely. An example is
 shown below:
 
 ```rust
-use sleet::stylesheet;
+use sleet::stylesheets;
 use sleet::colorscheme::catppuccin::frappe;
 
-stylesheet! {
+stylesheets! {
     container SomeContainer {
         style: {
             text_color: Some(frappe::TEXT),

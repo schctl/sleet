@@ -1,7 +1,7 @@
-use sleet::stylesheet;
+use sleet::stylesheets;
 use iced_core::{Color, Background};
 
-stylesheet! {
+stylesheets! {
     container SomeContainer0 {
         style: {
             text_color: Some(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }),
@@ -13,7 +13,7 @@ stylesheet! {
     }
 }
 
-stylesheet! {
+stylesheets! {
     pub container SomeContainer1 {
         style: {
             text_color: Some(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }),

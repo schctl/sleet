@@ -1,7 +1,7 @@
-use sleet::stylesheet;
+use sleet::stylesheets;
 use iced_core::{Color, Background, Vector};
 
-stylesheet! {
+stylesheets! {
     button SomeButton0 {
         active: {
             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
@@ -36,9 +36,7 @@ stylesheet! {
             shadow_offset: Vector::new(0.0, 0.0),
         },
     }
-}
 
-stylesheet! {
     pub button SomeButton1 {
         active: {
             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },

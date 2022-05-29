@@ -5,7 +5,7 @@
 /// This is the general format for using this macro:
 ///
 /// ```rust,ignore
-/// stylesheet! {
+/// stylesheets! {
 ///     {pub} {widget} {name} {
 ///         {attr}: {style},
 ///     }
@@ -23,10 +23,10 @@
 /// See [`container::StyleSheet`](https://docs.rs/iced_style/latest/iced_style/container/trait.StyleSheet.html).
 ///
 /// ```rust
-/// use sleet::stylesheet;
+/// use sleet::stylesheets;
 /// use iced_core::{Color, Background};
 ///
-/// stylesheet! {
+/// stylesheets! {
 ///     container SomeContainer {
 ///         style: {
 ///             text_color: Some(Color::new(1.0, 1.0, 1.0, 1.0)),
@@ -44,10 +44,10 @@
 /// See [`button::StyleSheet`](https://docs.rs/iced_style/latest/iced_style/button/trait.StyleSheet.html).
 ///
 /// ```rust
-/// use sleet::stylesheet;
+/// use sleet::stylesheets;
 /// use iced_core::{Color, Background, Vector};
 ///
-/// stylesheet! {
+/// stylesheets! {
 ///     pub button SomeButton {
 ///         active: {
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
@@ -74,26 +74,30 @@
 /// }
 /// ```
 #[macro_export]
-macro_rules! stylesheet {
+macro_rules! stylesheets {
     (
-        $vis:vis $ty:ident $name:ident {
-            $($method:ident: {
-                $($field:ident: $value:expr,)*
-                $(..$cont:expr)?
-            },)*
-        }
+        $(
+            $vis:vis $ty:ident $name:ident {
+                $($method:ident: {
+                    $($field:ident: $value:expr,)*
+                    $(..$cont:expr)?
+                },)*
+            }
+        )+
     ) => {
-        $vis struct $name {}
+        $(
+            $vis struct $name {}
 
-        impl $crate::iced_style::$ty::StyleSheet for $name {
-            $(
-                fn $method(&self) -> $crate::iced_style::$ty::Style {
-                    $crate::iced_style::$ty::Style {
-                        $($field: $value,)*
-                        $(..$cont)?
+            impl $crate::iced_style::$ty::StyleSheet for $name {
+                $(
+                    fn $method(&self) -> $crate::iced_style::$ty::Style {
+                        $crate::iced_style::$ty::Style {
+                            $($field: $value,)*
+                            $(..$cont)?
+                        }
                     }
-                }
-            )*
-        }
+                )*
+            }
+        )+
     };
 }

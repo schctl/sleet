@@ -1,4 +1,4 @@
-use sleet::stylesheet;
+use sleet::stylesheets;
 use iced_core::{Color, Background};
 use iced_style::container::Style;
 
@@ -10,24 +10,20 @@ const STYLE: Style = Style {
     border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 };
 
-stylesheet! {
+stylesheets! {
     container SomeContainer1 {
         style: {
             ..STYLE
         },
     }
-}
 
-stylesheet! {
     pub container SomeContainer2 {
         style: {
             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
             ..STYLE
         },
     }
-}
 
-stylesheet! {
     container SomeContainer0 {
         style: {
             text_color: Some(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }),
