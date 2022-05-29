@@ -1,24 +1,26 @@
 //! Helpers for widget stylesheets.
 
-/// Generic macro for auto-implementing widget stylesheets.
+/// Generic macro for auto-implementing the `StyleSheet` trait for a widget.
 ///
 /// This is the general format for using this macro:
 ///
 /// ```rust,ignore
 /// stylesheet! {
 ///     {pub} {widget} {name} {
-///         {attr}: {style definition},
+///         {attr}: {style},
 ///     }
 /// }
 /// ```
 ///
-/// `{attr}` is the trait method to be implemented, and `{style definition}` is the structure to be
-/// returned. See the [`iced` docs](https://docs.rs/iced_style/latest/iced_style/) to see the
-/// corresponding definitions for widgets.
+/// - `{attr}` is the trait method to be implemented.
+/// - `{style}` is the structure of the `Style` to be returned. This is specified in the usual
+/// struct construction form.
 ///
 /// # Examples
 ///
-/// ## [Container](https://docs.rs/iced_style/latest/iced_style/container/trait.StyleSheet.html)
+/// ## Container
+///
+/// See [`container::StyleSheet`](https://docs.rs/iced_style/latest/iced_style/container/trait.StyleSheet.html).
 ///
 /// ```rust
 /// use sleet::stylesheet;
@@ -37,7 +39,9 @@
 /// }
 /// ```
 ///
-/// ## [Button](https://docs.rs/iced_style/latest/iced_style/button/trait.StyleSheet.html)
+/// ## Button
+///
+/// See [`button::StyleSheet`](https://docs.rs/iced_style/latest/iced_style/button/trait.StyleSheet.html).
 ///
 /// ```rust
 /// use sleet::stylesheet;
@@ -64,27 +68,19 @@
 ///         pressed: {
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
-///             border_radius: 0.5,
-///             border_width: 2.0,
-///             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
-///             shadow_offset: Vector::new(0.0, 0.0),
-///         },
-///         disabled: {
-///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
-///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
-///             border_radius: 0.5,
-///             border_width: 2.0,
-///             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
-///             shadow_offset: Vector::new(0.0, 0.0),
+///             ..Default::default()
 ///         },
 ///     }
-///     }
+/// }
 /// ```
 #[macro_export]
 macro_rules! stylesheet {
     (
         $vis:vis $ty:ident $name:ident {
-            $($method:ident: { $($field:ident: $value:expr,)* },)*
+            $($method:ident: {
+                $($field:ident: $value:expr,)*
+                $(..$cont:expr)?
+            },)*
         }
     ) => {
         $vis struct $name {}
@@ -94,6 +90,7 @@ macro_rules! stylesheet {
                 fn $method(&self) -> $crate::iced_style::$ty::Style {
                     $crate::iced_style::$ty::Style {
                         $($field: $value,)*
+                        $(..$cont)?
                     }
                 }
             )*
