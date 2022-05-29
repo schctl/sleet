@@ -7,7 +7,6 @@ license = "MIT"
 
 [dependencies]
 iced_core = "0.5"
-iced_pure = "0.2"
 iced_style = "0.4"
 palette = { version = "0.6", optional = true }
 

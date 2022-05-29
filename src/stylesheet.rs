@@ -16,9 +16,6 @@
 /// returned. See the [`iced` docs](https://docs.rs/iced_style/latest/iced_style/) to see the
 /// corresponding definitions for widgets.
 ///
-/// Additionally, you can use `pure` before `{widget}` to specify that the stylesheet must be generated
-/// for a [pure](https://docs.rs/iced_pure/latest/iced_pure/) widget.
-///
 /// # Examples
 ///
 /// ## [Container](https://docs.rs/iced_style/latest/iced_style/container/trait.StyleSheet.html)
@@ -47,7 +44,7 @@
 /// use iced_core::{Color, Background, Vector};
 ///
 /// stylesheet! {
-///     pub pure button SomeButton {
+///     pub button SomeButton {
 ///         active: {
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
@@ -85,22 +82,8 @@
 /// ```
 #[macro_export]
 macro_rules! stylesheet {
-    // Native by default
     (
         $vis:vis $ty:ident $name:ident {
-            $($method:ident: { $($field:ident: $value:expr,)* },)*
-        }
-    ) => {
-        $crate::stylesheet! {
-            $vis native $ty $name {
-                $($method: { $($field: $value,)* },)*
-            }
-        }
-    };
-
-    // Native widgets
-    (
-        $vis:vis native $ty:ident $name:ident {
             $($method:ident: { $($field:ident: $value:expr,)* },)*
         }
     ) => {
@@ -110,25 +93,6 @@ macro_rules! stylesheet {
             $(
                 fn $method(&self) -> $crate::iced_style::$ty::Style {
                     $crate::iced_style::$ty::Style {
-                        $($field: $value,)*
-                    }
-                }
-            )*
-        }
-    };
-
-    // Pure widgets
-    (
-        $vis:vis pure $ty:ident $name:ident {
-            $($method:ident: { $($field:ident: $value:expr,)* },)*
-        }
-    ) => {
-        $vis struct $name {}
-
-        impl $crate::iced_pure::widget::$ty::StyleSheet for $name {
-            $(
-                fn $method(&self) -> $crate::iced_pure::widget::$ty::Style {
-                    $crate::iced_pure::widget::$ty::Style {
                         $($field: $value,)*
                     }
                 }

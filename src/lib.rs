@@ -13,5 +13,4 @@ pub mod stylesheet;
 pub mod colorscheme;
 
 pub use iced_core;
-pub use iced_pure;
 pub use iced_style;
