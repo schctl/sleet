@@ -1,6 +1,4 @@
-//! Color related helpers.
-
-#![allow(dead_code)]
+//! Color conversion traits.
 
 use iced_core::Color;
 
@@ -89,32 +87,10 @@ where
 
 #[cfg(test)]
 mod tests {
+    #![allow(unused_imports)]
+
     use super::*;
-
-    /// Check if two colors are the same, given a tolerance between channels.
-    fn are_colors_eq(a: Color, b: Color, t: f32) -> bool {
-        // Check if the difference between each channel is less
-        // than the allowed tolerance.
-        (a.r - b.r).abs() < t
-            && (a.g - b.g).abs() < t
-            && (a.b - b.b).abs() < t
-            && (a.a - b.a).abs() < t
-    }
-
-    /// Check if two colors are the same, with a higher tolerance for differences.
-    fn are_colors_eq_lenient(a: Color, b: Color) -> bool {
-        are_colors_eq(a, b, 0.009)
-    }
-
-    /// Check if two colors are the same.
-    fn are_colors_eq_comfy(a: Color, b: Color) -> bool {
-        are_colors_eq(a, b, 0.0000001)
-    }
-
-    /// Check if two colors are the same, with a higher tolerance for differences.
-    fn are_colors_eq_strict(a: Color, b: Color) -> bool {
-        are_colors_eq(a, b, 0.0000005)
-    }
+    use crate::color::util::*;
 
     /// Test conversion between a few [`Srgb`], [`Srgba`] and [`Color`].
     #[test]
