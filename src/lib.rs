@@ -7,7 +7,6 @@
 
 pub mod color;
 mod stylesheet;
-#[cfg(feature = "colors-extra")]
 #[rustfmt::skip]
 pub mod colorscheme;
 
