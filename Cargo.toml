@@ -18,7 +18,7 @@ palette = { version = "0.6", optional = true }
 sleet_color_impl = { path = "crates/color_impl" }
 
 [features]
-colors-extra = []
+colorschemes = []
 
 [dev-dependencies]
 trybuild = "1"

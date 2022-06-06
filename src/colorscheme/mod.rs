@@ -2,7 +2,7 @@
 
 #![allow(dead_code)]
 #![allow(clippy::approx_constant)]
-#![cfg(feature = "colors-extra")]
+#![cfg(feature = "colorschemes")]
 
 pub mod catppuccin;
 pub mod nord;
