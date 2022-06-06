@@ -1,5 +1,5 @@
 [package]
-name = "sleet_color_impl"
+name = "hex_impl"
 version = "0.0.1"
 authors = ["Sachin Cherian <sachinctl@protonmail.com>"]
 edition = "2021"

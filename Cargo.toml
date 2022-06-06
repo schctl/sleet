@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "crates/color_impl"
+    "crates/hex_impl"
 ]
 
 [package]
@@ -15,7 +15,7 @@ iced_core = "0.5"
 iced_style = "0.4"
 palette = { version = "0.6", optional = true }
 
-sleet_color_impl = { path = "crates/color_impl" }
+hex_impl = { path = "crates/hex_impl" }
 
 [features]
 colorschemes = []

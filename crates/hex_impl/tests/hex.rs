@@ -1,4 +1,4 @@
-use sleet_color_impl::hex;
+use hex_impl::hex;
 
 #[test]
 fn from_hex() {

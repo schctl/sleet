@@ -13,7 +13,7 @@ pub use iced_core::Color;
 /// assert_eq!(Color::WHITE, hex!(FFFFFF).into());
 /// assert_eq!([0.0, 0.0, 0.0, 0.0], hex!(00000000));
 /// ```
-pub use sleet_color_impl::hex;
+pub use hex_impl::hex;
 
 #[allow(dead_code)]
 mod util {
@@ -157,7 +157,6 @@ pub fn hsv(hue: u16, sat: f32, val: f32) -> Color {
 mod tests {
     use super::util::*;
     use super::*;
-    use sleet_color_impl::hex;
 
     #[test]
     fn convert_hsv() {
