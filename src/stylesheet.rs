@@ -86,7 +86,7 @@ macro_rules! stylesheets {
         )+
     ) => {
         $(
-            $vis struct $name {}
+            $vis struct $name;
 
             impl $crate::iced_style::$ty::StyleSheet for $name {
                 $(
