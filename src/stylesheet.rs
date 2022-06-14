@@ -78,10 +78,22 @@ macro_rules! stylesheets {
     (
         $(
             $vis:vis $ty:ident $name:ident {
-                $($method:ident($($arg:ident: $argty:ty),*): {
-                    $($field:ident: $value:expr,)*
-                    $(..$cont:expr)?
-                }),*
+                $(
+                    $method:ident($($arg:ident: $argty:ty),*)
+                    // `Style` construction shorthand
+                    $(
+                        : {
+                            $($field:ident: $value:expr,)*
+                            $(..$cont:expr)?
+                        }
+                    )?
+                    // Directly return expression
+                    $(
+                        -> $out_ty:ty: $out_val:expr
+                    )?
+                    // Allow extra commas
+                    $(,)*
+                ),*
             }
         )+
     ) => {
@@ -90,12 +102,22 @@ macro_rules! stylesheets {
 
             impl $crate::iced_style::$ty::StyleSheet for $name {
                 $(
-                    fn $method(&self $(, $arg: $argty)*) -> $crate::iced_style::$ty::Style {
-                        $crate::iced_style::$ty::Style {
-                            $($field: $value,)*
-                            $(..$cont)?
+                    fn $method(&self $(, $arg: $argty)*)
+                    // `Style` construction shorthand
+                    $(
+                        -> $crate::iced_style::$ty::Style {
+                            $crate::iced_style::$ty::Style {
+                                $($field: $value,)*
+                                $(..$cont)?
+                            }
                         }
-                    }
+                    )?
+                    // Directly return expression
+                    $(
+                        -> $out_ty {
+                            $out_val
+                        }
+                    )?
                 )*
             }
         )+
