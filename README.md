@@ -22,4 +22,4 @@ shown below:
 See the [documentation].
 
 [`iced`]: https://github.com/iced-rs/iced/
-[documentation]: https://schctl.github.io/sleet/
+[documentation]: https://schctl.github.io/sleet/sleet/index.html
