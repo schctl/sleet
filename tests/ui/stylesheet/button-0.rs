@@ -34,7 +34,7 @@ stylesheets! {
             border_width: 2.0,
             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
             shadow_offset: Vector::new(0.0, 0.0),
-        },
+        }
     }
 
     pub button SomeButton1 {
@@ -53,7 +53,7 @@ stylesheets! {
             border_width: 2.0,
             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
             shadow_offset: Vector::new(0.0, 0.0),
-        },
+        }
     }
 }
 

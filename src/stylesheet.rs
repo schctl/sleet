@@ -34,7 +34,7 @@
 ///             border_radius: 0.5,
 ///             border_width: 2.0,
 ///             border_color: Color::new(1.0, 0.0, 1.0, 1.0),
-///         },
+///         }
 ///     }
 /// }
 /// ```
@@ -69,7 +69,7 @@
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
 ///             ..Default::default()
-///         },
+///         }
 ///     }
 /// }
 /// ```
@@ -81,7 +81,7 @@ macro_rules! stylesheets {
                 $($method:ident($($arg:ident: $argty:ty),*): {
                     $($field:ident: $value:expr,)*
                     $(..$cont:expr)?
-                },)*
+                }),*
             }
         )+
     ) => {
