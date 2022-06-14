@@ -7,14 +7,27 @@
 /// ```rust,ignore
 /// stylesheets! {
 ///     {pub} {widget} {name} {
-///         {attr}({args}): {style},
+///         {attr}({args}) -> {out_type}: {value},
 ///     }
 /// }
 /// ```
 ///
 /// - `{attr}` is the trait method to be implemented.
-/// - `{style}` is the structure of the `Style` to be returned. This is specified in the usual
-/// struct construction form.
+/// - `{args}` are the arguments that are supplied to the trait method.
+/// - `{out_type}` is the type of the returned value.
+/// - `{value}` is the returned value.
+///
+/// Alternatively, there is a shorthand syntax for methods that return a `Style` structure.
+///
+/// ```rust,ignore
+/// stylesheets! {
+///     {pub} {widget} {name} {
+///         {attr}({args}): {struct_construction},
+///     }
+/// }
+/// ```
+///
+/// - `{struct_construction}` is how you would normally construct the `Style`, see the examples below.
 ///
 /// # Examples
 ///
