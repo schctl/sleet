@@ -7,7 +7,7 @@
 /// ```rust,ignore
 /// stylesheets! {
 ///     {pub} {widget} {name} {
-///         {attr}: {style},
+///         {attr}({args}): {style},
 ///     }
 /// }
 /// ```
@@ -28,7 +28,7 @@
 ///
 /// stylesheets! {
 ///     container SomeContainer {
-///         style: {
+///         style(): {
 ///             text_color: Some(Color::new(1.0, 1.0, 1.0, 1.0)),
 ///             background: Some(Background::Color(Color::new(0.0, 0.0, 0.0, 1.0))),
 ///             border_radius: 0.5,
@@ -49,7 +49,7 @@
 ///
 /// stylesheets! {
 ///     pub button SomeButton {
-///         active: {
+///         active(): {
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
 ///             border_radius: 0.5,
@@ -57,7 +57,7 @@
 ///             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             shadow_offset: Vector::new(0.0, 0.0),
 ///         },
-///         hovered: {
+///         hovered(): {
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
 ///             border_radius: 0.5,
@@ -65,7 +65,7 @@
 ///             border_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             shadow_offset: Vector::new(0.0, 0.0),
 ///         },
-///         pressed: {
+///         pressed(): {
 ///             text_color: Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 },
 ///             background: Some(Background::Color(Color { r: 1.0, g: 1.0, b: 1.0, a: 1.0 })),
 ///             ..Default::default()
@@ -78,7 +78,7 @@ macro_rules! stylesheets {
     (
         $(
             $vis:vis $ty:ident $name:ident {
-                $($method:ident: {
+                $($method:ident($($arg:ident: $argty:ty),*): {
                     $($field:ident: $value:expr,)*
                     $(..$cont:expr)?
                 },)*
@@ -90,7 +90,7 @@ macro_rules! stylesheets {
 
             impl $crate::iced_style::$ty::StyleSheet for $name {
                 $(
-                    fn $method(&self) -> $crate::iced_style::$ty::Style {
+                    fn $method(&self $(, $arg: $argty)*) -> $crate::iced_style::$ty::Style {
                         $crate::iced_style::$ty::Style {
                             $($field: $value,)*
                             $(..$cont)?
