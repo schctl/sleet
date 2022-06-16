@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["NORD_10","#5e81ac"],["NORD_7","#8fbcbb"],["NORD_8","#88c0d0"],["NORD_9","#81a1c1"]]});

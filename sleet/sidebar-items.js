@@ -1,0 +1,1 @@
+initSidebarItems({"macro":[["fonts","A macro for defining fonts."],["stylesheets","Generic macro for auto-implementing the `StyleSheet` trait for a widget."]],"mod":[["color","Color related helpers."],["colorscheme","Some color scheme definitions."]]});

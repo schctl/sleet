@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Generic macro for auto-implementing the `StyleSheet` trait for a widget."><meta name="keywords" content="rust, rustlang, rust-lang, stylesheets"><title>stylesheets in sleet - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../sleet/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../sleet/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In sleet</a></h2><div id="sidebar-vars" data-name="stylesheets" data-ty="macro" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../sleet/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Macro <a href="index.html">sleet</a>::<wbr><a class="macro" href="#">stylesheets</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/sleet/stylesheet.rs.html#90-138">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><div class="example-wrap"><pre class="rust macro"><code><span class="macro">macro_rules!</span> <span class="ident">stylesheets</span> {
+    (
+        $(
+            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ident</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> {
+                $(
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">method</span>:<span class="ident">ident</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">argty</span>:<span class="ident">ty</span>),<span class="kw-2">*</span>)
+                    <span class="comment">// `Style` construction shorthand</span>
+                    $(
+                        : {
+                            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>:<span class="ident">expr</span>,)<span class="op">*</span>
+                            $(..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cont</span>:<span class="ident">expr</span>)<span class="question-mark">?</span>
+                        }
+                    )<span class="question-mark">?</span>
+                    <span class="comment">// Directly return expression</span>
+                    $(
+                        -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">out_ty</span>:<span class="ident">ty</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">out_val</span>:<span class="ident">expr</span>
+                    )<span class="question-mark">?</span>
+                    <span class="comment">// Allow extra commas</span>
+                    $(,)<span class="op">*</span>
+                ),<span class="op">*</span>
+            }
+        )<span class="op">+</span>
+    ) =&gt; { ... };
+}</code></pre></div>
+</div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Generic macro for auto-implementing the <code>StyleSheet</code> trait for a widget.</p>
+<p>This is the general format for using this macro:</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="macro">stylesheets!</span> {
+    {<span class="kw">pub</span>} {<span class="ident">widget</span>} {<span class="ident">name</span>} {
+        {<span class="ident">attr</span>}({<span class="ident">args</span>}) -&gt; {<span class="ident">out_type</span>}: {<span class="ident">value</span>},
+    }
+}</code></pre></div>
+<ul>
+<li><code>{attr}</code> is the trait method to be implemented.</li>
+<li><code>{args}</code> are the arguments that are supplied to the trait method.</li>
+<li><code>{out_type}</code> is the type of the returned value.</li>
+<li><code>{value}</code> is the returned value.</li>
+</ul>
+<p>Alternatively, there is a shorthand syntax for methods that return a <code>Style</code> structure.</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="macro">stylesheets!</span> {
+    {<span class="kw">pub</span>} {<span class="ident">widget</span>} {<span class="ident">name</span>} {
+        {<span class="ident">attr</span>}({<span class="ident">args</span>}): {<span class="ident">struct_construction</span>},
+    }
+}</code></pre></div>
+<ul>
+<li><code>{struct_construction}</code> is how you would normally construct the <code>Style</code>, see the examples below.</li>
+</ul>
+<h2 id="examples"><a href="#examples">Examples</a></h2><h3 id="container"><a href="#container">Container</a></h3>
+<p>See <a href="https://docs.rs/iced_style/latest/iced_style/container/trait.StyleSheet.html"><code>container::StyleSheet</code></a>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">sleet::stylesheets</span>;
+<span class="kw">use</span> <span class="ident">iced_core</span>::{<span class="ident">Color</span>, <span class="ident">Background</span>};
+
+<span class="macro">stylesheets!</span> {
+    <span class="ident">container</span> <span class="ident">SomeContainer</span> {
+        <span class="ident">style</span>(): {
+            <span class="ident">text_color</span>: <span class="prelude-val">Some</span>(<span class="ident">Color::new</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>)),
+            <span class="ident">background</span>: <span class="prelude-val">Some</span>(<span class="ident">Background::Color</span>(<span class="ident">Color::new</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>))),
+            <span class="ident">border_radius</span>: <span class="number">0.5</span>,
+            <span class="ident">border_width</span>: <span class="number">2.0</span>,
+            <span class="ident">border_color</span>: <span class="ident">Color::new</span>(<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>),
+        }
+    }
+}</code></pre></div>
+<h3 id="button"><a href="#button">Button</a></h3>
+<p>See <a href="https://docs.rs/iced_style/latest/iced_style/button/trait.StyleSheet.html"><code>button::StyleSheet</code></a>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">sleet::stylesheets</span>;
+<span class="kw">use</span> <span class="ident">iced_core</span>::{<span class="ident">Color</span>, <span class="ident">Background</span>, <span class="ident">Vector</span>};
+
+<span class="macro">stylesheets!</span> {
+    <span class="kw">pub</span> <span class="ident">button</span> <span class="ident">SomeButton</span> {
+        <span class="ident">active</span>(): {
+            <span class="ident">text_color</span>: <span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> },
+            <span class="ident">background</span>: <span class="prelude-val">Some</span>(<span class="ident">Background::Color</span>(<span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> })),
+            <span class="ident">border_radius</span>: <span class="number">0.5</span>,
+            <span class="ident">border_width</span>: <span class="number">2.0</span>,
+            <span class="ident">border_color</span>: <span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> },
+            <span class="ident">shadow_offset</span>: <span class="ident">Vector::new</span>(<span class="number">0.0</span>, <span class="number">0.0</span>),
+        },
+        <span class="ident">hovered</span>(): {
+            <span class="ident">text_color</span>: <span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> },
+            <span class="ident">background</span>: <span class="prelude-val">Some</span>(<span class="ident">Background::Color</span>(<span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> })),
+            <span class="ident">border_radius</span>: <span class="number">0.5</span>,
+            <span class="ident">border_width</span>: <span class="number">2.0</span>,
+            <span class="ident">border_color</span>: <span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> },
+            <span class="ident">shadow_offset</span>: <span class="ident">Vector::new</span>(<span class="number">0.0</span>, <span class="number">0.0</span>),
+        },
+        <span class="ident">pressed</span>(): {
+            <span class="ident">text_color</span>: <span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> },
+            <span class="ident">background</span>: <span class="prelude-val">Some</span>(<span class="ident">Background::Color</span>(<span class="ident">Color</span> { <span class="ident">r</span>: <span class="number">1.0</span>, <span class="ident">g</span>: <span class="number">1.0</span>, <span class="ident">b</span>: <span class="number">1.0</span>, <span class="ident">a</span>: <span class="number">1.0</span> })),
+            ..<span class="ident">Default::default</span>()
+        }
+    }
+}</code></pre></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="sleet" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</body></html>

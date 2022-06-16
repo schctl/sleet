@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["catppuccin","The Catppuccin theme."],["nord","The Nord theme."]]});
