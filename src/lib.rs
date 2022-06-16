@@ -6,6 +6,7 @@
 //! [`iced`]: https://github.com/iced-rs/iced/
 
 pub mod color;
+mod font;
 mod stylesheet;
 #[rustfmt::skip]
 pub mod colorscheme;
@@ -13,3 +14,5 @@ pub mod colorscheme;
 // Re-exports
 pub use iced_core;
 pub use iced_style;
+#[doc(hidden)]
+pub use name_from_path;

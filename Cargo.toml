@@ -1,6 +1,7 @@
 [workspace]
 members = [
-    "crates/hex_impl"
+    "crates/hex_impl",
+    "crates/name_from_path",
 ]
 
 [package]
@@ -16,6 +17,7 @@ iced_style = "0.4"
 palette = { version = "0.6", optional = true }
 
 hex_impl = { path = "crates/hex_impl" }
+name_from_path = { path = "crates/name_from_path" }
 
 [features]
 colorschemes = []
